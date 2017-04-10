@@ -4,3 +4,6 @@ delete the hosts and type
 
 sudo ansible-playbook -s playboook.yml
 
+
+install the ansible on my own ubuntu linux on virtulbox. I write simple playbook for task.
+install a package in module and comes with a handler.
