@@ -1,5 +1,7 @@
-P1. When I tried to install the vagrant on my VM. it shows some errors. At the beginning I just don't want to mess up my computer.
+P1. When I tried to install the vagrant on my VM. it shows some errors. 
+At the beginning I just don't want to mess up my computer.
 I look up some post it said it could not runs in ubunn Linux 32 so I recreate a vanilla one but it didn't work.
+Why I cannot install vagrant on virtual box? Because 64 bits not support it. Only 32 bits can do the nested VM.
 S: Finaly I install vagrant in my mac and then it could open a centos on virtualbox. 
 I think the reason is that vagrant could not create the VM of VM.
 
