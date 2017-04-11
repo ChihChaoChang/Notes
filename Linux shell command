@@ -1,0 +1,8 @@
+ls -al 
+show all  and privileges
+
+ls -l /usr/bin/X*
+too see what file start with X
+
+\(return)
+when the commmand too long we can split it to half
