@@ -15,3 +15,11 @@ example: echo "this is a book" > awk.txt
 example: awk '{print $2,$1,$3,$4}' awk.txt 
 
 =>is this a book
+
+example: $ cut -d':' -f1 /etc/passwd
+=> show all the contents 
+Instead of selecting x number of characters, if you like to extract a whole field, you can combine option -f and -d. 
+The option -f specifies which field you want to extract, and the option -d specifies what is the field delimiter that is used in the input file.
+
+The following example displays only first field of each lines from /etc/passwd file using the field delimiter : (colon). 
+In this case, the 1st field is the username. The file
