@@ -20,3 +20,14 @@ Exp-Dev-Ser
 HDG 
 Jenkins stop weekly
 java, pyhton, versia test, ansible
+
+
+CDGH (similar to HDG)
+whitelist IP
+24hr to patch for critical
+3 days for high
+otehr every 30 days
+
+Document
+pulp repo
+Ansible/jenkins job sync
