@@ -1,0 +1,33 @@
+Error: Could not start Service[splunk]: Execution of '/sbin/service splunk start' returned 1: Starting splunk (via systemctl):  Job for splunk.service failed because the control process exited with error code. See "systemctl status splunk.service" and "journalctl -xe" for details.
+[FAILED]
+Error: /Stage[main]/Profile::Splunkforwarder/Service[splunk]/ensure: change from stopped to running failed: Could not start Service[splunk]: Execution of '/sbin/service splunk start' returned 1: Starting splunk (via systemctl):  Job for splunk.service failed because the control process exited with error code. See "systemctl status splunk.service" and "journalctl -xe" for details.
+[FAILED]
+
+fix:
+
+sudo systemctl status splunk
+
+sudo !! 
+means to execute the previous command as the superuser.
+
+sudo systemctl start splunk
+
+sudo journalctl -xe
+
+
+'''
+Could not request certificate: getaddrinfo: Name or service not known
+'''
+
+locate splunkforwarder
+ls -l /etc/init.d/
+
+sudo /etc/init.d/splunk start
+
+ls -l /opt/splunkforwarder/
+
+sudo /opt/splunkforwarder/bin/splunk start
+
+'''
+SOFTWARE LICENSE AGREEMENT
+'''
