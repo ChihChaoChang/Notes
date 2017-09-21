@@ -24,3 +24,6 @@ and the option -d specifies what is the field delimiter that is used in the inpu
 
 The following example displays only first field of each lines from /etc/passwd file using the field delimiter : (colon). 
 In this case, the 1st field is the username. The file
+
+
+The double-colon (::) does indeed mean the current directory. 
