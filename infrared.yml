@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: Infrared info
+      shell: |
+           ipmitool lan print | grep 'IP Address'
+           dmidecode -t1 | grep 'Serial Number'
+           lldpcli show neighbors | grep 'PortID'
+           lspci -knn | grep 'RAID bus controller'
+      register: item
+
+    - debug:
+        var: item.stdout_lines
