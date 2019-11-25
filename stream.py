@@ -2,45 +2,52 @@ import fileinput
 import datetime
 class HashTable:
     def __init__(self, rawEvent):
-        if rawEvent == None:
-            return 
         self.rawEvent = rawEvent
         self.dic = dict()
-        #global water_mark
+        self.water_mark = -1
+        self.key = ""
+        self.m_type = ""
+        self.value = 0
         
     @property
     def table(self):
-        global water_mark
-        water_mark = -1
+        if self.rawEvent == None:
+            return 
         for event in self.rawEvent:
             new_event = event.split("|")
-            water_mark= new_event[0]
-            #HashTable.update(self, self.water_mark)
-            #print ("self.water_mark",self.water_mark)
-            if new_event[1] == "INSERT":
-                if new_event[2] not in self.dic:
-                    self.dic[new_event[2]] = new_event[3]
-            elif new_event[1] == "UPSERT":
-                self.dic[new_event[2]] = new_event[3]
-            elif new_event[1] ==  "DELETE":
-                if new_event[2] in self.dic:
-                    self.dic[new_event[2]] = None
+            self.m_type = new_event[1]
+            self.key = new_event[2]
+            if self.m_type != "DELETE":
+                self.value = new_event[3]
+            if self.m_type == "INSERT":
+                if self.key not in self.dic:
+                    self.dic[self.key] = self.value
+            if self.m_type == "UPSERT":
+                self.dic[self.key] = self.value
+            elif self.m_type ==  "DELETE":
+                if self.key in self.dic:
+                    self.dic[self.key] = None
         return self.dic
+    
 
     @property
     def high_watermark(self):
-        #print ("self.water_mark",water_mark)
-        if water_mark == -1:
+        for event in self.rawEvent:
+            new_event = event.split("|")
+            self.water_mark = int(new_event[0])
+        print ("self.water_mark",self.water_mark)
+        if self.water_mark == -1:
             return datetime.datetime.utcnow()
         else:
-            return datetime.datetime.utcfromtimestamp(water_mark/1000.0)
+            return datetime.datetime.utcfromtimestamp(self.water_mark/1000.0)
+
 
 def print_report(snapshot):
     #print (f'High Watermark: {snapshot.high_watermark.strftime("%Y-%m-%dT%H:%M:S.%f")[:-3]z')
     print (snapshot.high_watermark.strftime("%Y-%m-%dT%H:%M:S.%f")[:-3])
     print ('\nTable State:')
     table = snapshot.table
-    #print (table)
+    print (table)
     for key in sorted(table.keys()):
         #print(f'\t{key}:{table[key]}')
         print ("\t"+key+":"+str(table[key]))
